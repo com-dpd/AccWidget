@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <application
+        android:name=".AccWidgetApp"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher_fg"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AccWidget">
+
+        <!-- On-demand WorkManager init via Configuration.Provider -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
+        <activity-alias
+            android:name=".LauncherAlias"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_fg"
+            android:label="@string/app_name"
+            android:targetActivity=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <receiver
+            android:name=".widget.AccWidgetCompactProvider"
+            android:exported="true"
+            android:label="@string/widget_name_compact">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/acc_widget_compact_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.AccWidgetStandardProvider"
+            android:exported="true"
+            android:label="@string/widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.dp.accwidget.ACTION_WIDGET_STOP" />
+                <action android:name="com.dp.accwidget.ACTION_WIDGET_START" />
+                <action android:name="com.dp.accwidget.ACTION_WIDGET_SMART_OFF" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/acc_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.AccAppWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/acc_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.WidgetTickReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.dp.accwidget.ACTION_WIDGET_TICK" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".widget.WidgetPowerReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".smart.SmartChargeAlarmReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.dp.accwidget.ACTION_SMART_TICK" />
+                <action android:name="com.dp.accwidget.ACTION_SMART_WINDOW" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".smart.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

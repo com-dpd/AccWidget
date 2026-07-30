@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg"
+    android:orientation="vertical"
+    android:paddingStart="12dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="12dp"
+    android:paddingBottom="12dp">
+
+    <TextView
+        android:id="@+id/widget_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:autoSizeMaxTextSize="14sp"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeTextType="uniform"
+        android:letterSpacing="0.02"
+        android:maxLines="1"
+        android:text="@string/widget_name"
+        android:textColor="#D8EFE6"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <!-- glyph | % + current | (batt_status under %) -->
+    <LinearLayout
+        android:id="@+id/widget_soc_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/widget_battery_icon"
+            android:layout_width="96dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/widget_name"
+            android:scaleType="fitCenter" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/widget_battery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeMinTextSize="18sp"
+                    android:autoSizeTextType="uniform"
+                    android:maxLines="1"
+                    android:minWidth="56dp"
+                    android:text="—"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/widget_current"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="17sp"
+                    android:autoSizeMinTextSize="11sp"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center_vertical|start"
+                    android:maxLines="1"
+                    android:text="— mA"
+                    android:textColor="#A8E6CF"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/widget_batt_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="13sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="#B8C4D4"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/widget_limits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:autoSizeMaxTextSize="14sp"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="2"
+        android:text="—"
+        android:textColor="#B8C4D4" />
+
+    <TextView
+        android:id="@+id/widget_status"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:autoSizeMaxTextSize="13sp"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeTextType="uniform"
+        android:gravity="top"
+        android:maxLines="2"
+        android:text="—"
+        android:textColor="#C5D4C8" />
+
+    <LinearLayout
+        android:id="@+id/widget_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_widget_stop"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/widget_btn_outline"
+            android:contentDescription="@string/widget_btn_stop_desc"
+            android:text="@string/widget_btn_stop"
+            android:textAllCaps="false"
+            android:textColor="@color/widget_btn_text_outline"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_widget_start"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/widget_btn_outline"
+            android:contentDescription="@string/widget_btn_start_desc"
+            android:text="@string/widget_btn_start"
+            android:textAllCaps="false"
+            android:textColor="@color/widget_btn_text_outline"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_widget_smart_off"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/widget_btn_outline"
+            android:contentDescription="@string/widget_btn_smart_off_desc"
+            android:text="@string/widget_btn_smart_off"
+            android:textAllCaps="false"
+            android:textColor="@color/widget_btn_text_outline"
+            android:textSize="11sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ACC Widget</string>
+    <string name="widget_name">ACC Charge</string>
+    <string name="widget_name_compact">ACC Charge (compact)</string>
+    <string name="widget_description">Battery %, current, ACC limits and smart charge status</string>
+    <string name="widget_description_compact">Compact: battery % and charge/discharge current</string>
+    <string name="control_enabled">Charging control (master)</string>
+    <string name="section_limits">Hysteresis limits</string>
+    <string name="resume_pct">Resume charging below %</string>
+    <string name="pause_pct">Stop charging at %</string>
+    <string name="max_current">Max charge current (mA, up to 3000)</string>
+    <string name="section_smart">Smart charge to deadline</string>
+    <string name="smart_enabled">Smart charge (one-shot)</string>
+    <string name="smart_target">Charge to target %</string>
+    <string name="smart_time">Ready by (HH:MM)</string>
+    <string name="smart_lead">Start smart window N minutes before deadline</string>
+    <string name="hide_launcher">Hide app icon from launcher</string>
+    <string name="apply">Apply</string>
+    <string name="action_reset">Reset</string>
+    <string name="cancel">Cancel</string>
+    <string name="permissions">Permissions (alarms / battery)</string>
+    <string name="section_live_battery">Live battery (no root)</string>
+    <string name="root_checking">Checking root access…</string>
+    <string name="root_granted">Root: granted — ACC control available</string>
+    <string name="root_denied">Root: NOT granted — ACC control unavailable. Battery %% / current / status below still work without root.</string>
+    <string name="live_battery_fmt">%1$d%% · %2$s · %3$s · plugged: %4$s</string>
+    <string name="hint_widget">How it works:\n\n• Master ON — ACC controls charging (needs root). Master OFF — normal unrestricted charge.\n• Hysteresis: charge until Stop %% (pause), then stay off until level falls to Resume %% or below.\n• Max current (up to 3000 mA) limits charge rate in normal mode. Smart mode may use up to 2000 mA on its own grid.\n• Smart (one-shot): starting N minutes before the deadline, charge to the target %%. After the target or deadline, smart turns off and hysteresis returns.\n• Add ACC Charge widgets to the home screen; tap a widget to open settings.</string>
+    <string name="status_off">OFF · unmanaged charge</string>
+    <string name="widget_battery_line">%1$d%% · %2$s</string>
+    <string name="widget_battery_unknown">Battery —</string>
+    <string name="widget_smart_line">Smart %1$d%% @ %2$s</string>
+    <string name="widget_hysteresis_line">%1$d%% → %2$d%% · %3$d mA</string>
+    <string name="applied">Applied</string>
+    <string name="reset_done">Reset to defaults</string>
+    <string name="cancelled">Reverted</string>
+    <string name="resume_lt_pause">Resume %% must be lower than Stop %%</string>
+    <string name="root_required">Root required for ACC control</string>
+    <string name="widget_btn_stop">⏹</string>
+    <string name="widget_btn_start">▶</string>
+    <string name="widget_btn_smart_off">smart</string>
+    <string name="widget_btn_stop_desc">Stop control</string>
+    <string name="widget_btn_start_desc">Start control</string>
+    <string name="widget_btn_smart_off_desc">Disable smart</string>
+    <string name="launcher_hidden">Launcher icon hidden</string>
+    <string name="launcher_shown">Launcher icon shown</string>
+</resources>

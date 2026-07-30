@@ -1,0 +1,10 @@
+.gradle/
+.tools/
+**/build/
+local.properties
+*.iml
+.idea/
+*.apk
+*.tgz
+acc_*.zip
+setup_acc.sh

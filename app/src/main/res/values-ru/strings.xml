@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ACC Виджет</string>
+    <string name="widget_name">ACC Заряд</string>
+    <string name="widget_name_compact">ACC Заряд (компакт)</string>
+    <string name="widget_description">Заряд %, ток, пороги ACC и статус умного заряда</string>
+    <string name="widget_description_compact">Компакт: заряд % и ток заряда/разряда</string>
+    <string name="control_enabled">Управление зарядкой (мастер)</string>
+    <string name="section_limits">Пороги гистерезиса</string>
+    <string name="resume_pct">Включить заряд ниже %</string>
+    <string name="pause_pct">Остановить при %</string>
+    <string name="max_current">Макс. ток заряда (мА, до 3000)</string>
+    <string name="section_smart">Умный заряд к дедлайну</string>
+    <string name="smart_enabled">Умный заряд (однократно)</string>
+    <string name="smart_target">Зарядить до %</string>
+    <string name="smart_time">Готовность к (ЧЧ:ММ)</string>
+    <string name="smart_lead">Начать умный заряд за N минут до дедлайна</string>
+    <string name="hide_launcher">Скрыть ярлык приложения</string>
+    <string name="apply">Применить</string>
+    <string name="action_reset">Сброс</string>
+    <string name="cancel">Отменить</string>
+    <string name="permissions">Разрешения (будильники / батарея)</string>
+    <string name="section_live_battery">Батарея без root</string>
+    <string name="root_checking">Проверка root…</string>
+    <string name="root_granted">Root: выдан — управление ACC доступно</string>
+    <string name="root_denied">Root: НЕ выдан — управление ACC недоступно. Ниже по-прежнему видны %% / ток / статус без root.</string>
+    <string name="live_battery_fmt">%1$d%% · %2$s · %3$s · питание: %4$s</string>
+    <string name="hint_widget">Как работает:\n\n• Мастер ВКЛ — ACC управляет зарядкой (нужен root). Мастер ВЫКЛ — обычная зарядка без ограничений.\n• Гистерезис: заряд до «Остановить при %%», затем пауза, пока уровень не упадёт до «Включить заряд ниже %%» или ниже.\n• Макс. ток (до 3000 мА) ограничивает скорость в обычном режиме. Умный режим использует свою сетку до 2000 мА.\n• Умный заряд (однократно): за N минут до дедлайна заряд до цели %%. После цели или дедлайна умный режим выключается, снова действует гистерезис.\n• Добавьте виджеты «ACC Заряд» на рабочий стол; нажатие открывает настройки.</string>
+    <string name="status_off">ВЫКЛ · обычная зарядка</string>
+    <string name="widget_battery_line">%1$d%% · %2$s</string>
+    <string name="widget_battery_unknown">Батарея —</string>
+    <string name="widget_smart_line">Умный %1$d%% к %2$s</string>
+    <string name="widget_hysteresis_line">%1$d%% → %2$d%% · %3$d мА</string>
+    <string name="applied">Применено</string>
+    <string name="reset_done">Сброшено к значениям по умолчанию</string>
+    <string name="cancelled">Отменено</string>
+    <string name="resume_lt_pause">«Включить ниже» должно быть меньше «Остановить при»</string>
+    <string name="root_required">Нужен root для управления ACC</string>
+    <string name="widget_btn_stop">⏹</string>
+    <string name="widget_btn_start">▶</string>
+    <string name="widget_btn_smart_off">smart</string>
+    <string name="widget_btn_stop_desc">Стоп управления</string>
+    <string name="widget_btn_start_desc">Пуск управления</string>
+    <string name="widget_btn_smart_off_desc">Выключить смарт</string>
+    <string name="launcher_hidden">Ярлык скрыт</string>
+    <string name="launcher_shown">Ярлык показан</string>
+</resources>
