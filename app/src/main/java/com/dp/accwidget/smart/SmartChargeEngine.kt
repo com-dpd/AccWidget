@@ -10,6 +10,9 @@ object SmartChargeEngine {
     const val MAX_MA = 2000
     const val DEFAULT_LEAD_MINUTES = 60
     const val TICK_MS = 10L * 60L * 1000L
+    const val DEFAULT_TICK_MINUTES = 10
+    const val MIN_TICK_MINUTES = 1
+    const val MAX_TICK_MINUTES = 30
 
     /** Baseline: assume ~8%/h at 300 mA until calibrated (conservative / slow). */
     private const val DEFAULT_RATE_AT_300 = 8f

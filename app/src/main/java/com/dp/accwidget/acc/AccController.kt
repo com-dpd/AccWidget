@@ -99,13 +99,20 @@ class AccController(context: Context) {
 
     fun applyHysteresis(resume: Int, pause: Int, mccMa: Int): CmdResult {
         if (rootAvailable == false) return CmdResult(-3, "", "root denied")
+        val capacity = readBattery().capacity
         val acc = resolveAcc()
         val accd = resolveAccd()
+        // Use -d when already at/above pause so we do not beep ON then OFF.
+        val chargeCmd = if (capacity >= 0 && capacity >= pause) {
+            "$acc -d >/dev/null 2>&1 || true"
+        } else {
+            "$acc -e >/dev/null 2>&1 || true"
+        }
         val script = listOf(
             """$acc -s "charging_switch=battery/input_suspend 0 1 --" >/dev/null 2>&1 || true""",
             "$acc -s pc=$pause rc=$resume",
             "$acc -s mcc=$mccMa",
-            "$acc -e >/dev/null 2>&1 || true",
+            chargeCmd,
             "$accd >/dev/null 2>&1 || true",
             "echo OK",
         ).joinToString("; ")
@@ -257,13 +264,4 @@ class AccController(context: Context) {
     private fun readSysfsInt(path: String): Int? = readSysfsText(path)?.toIntOrNull()
 
     private fun readSysfsLong(path: String): Long? = readSysfsText(path)?.toLongOrNull()
-
-    fun pauseAtTarget(targetPct: Int): CmdResult {
-        if (rootAvailable == false) return CmdResult(-3, "", "root denied")
-        val acc = resolveAcc()
-        val resume = (targetPct - 5).coerceAtLeast(1)
-        return runSu(
-            "$acc -s pc=$targetPct rc=$resume; $acc -d; echo PAUSED_AT_$targetPct",
-        )
-    }
 }

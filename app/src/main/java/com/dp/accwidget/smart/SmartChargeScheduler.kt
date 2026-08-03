@@ -48,6 +48,9 @@ object SmartChargeScheduler {
     const val ACTION_SMART_TICK = "com.dp.accwidget.ACTION_SMART_TICK"
     const val ACTION_SMART_WINDOW = "com.dp.accwidget.ACTION_SMART_WINDOW"
 
+    private fun tickMs(settings: AccSettings): Long =
+        settings.smartTickMinutes.coerceIn(1, 30).toLong() * 60_000L
+
     fun reschedule(context: Context) {
         CoroutineScope(Dispatchers.IO).launch {
             val app = AccWidgetApp.get(context)
@@ -67,7 +70,7 @@ object SmartChargeScheduler {
                 now < deadline -> scheduleExact(
                     context,
                     ACTION_SMART_TICK,
-                    now + SmartChargeEngine.TICK_MS.coerceAtLeast(60_000L),
+                    now + tickMs(s).coerceAtLeast(60_000L),
                 )
                 else -> {
                     // deadline == now: treat as finished, arm tomorrow
@@ -201,8 +204,7 @@ object SmartChargeScheduler {
             }
             inWindow -> {
                 if (batt.capacity >= s.smartTargetPct) {
-                    // Target reached inside window → hysteresis, keep smart switch on
-                    acc.pauseAtTarget(s.smartTargetPct)
+                    // Target reached → hysteresis (applyHysteresis uses -d when at/above pause)
                     finishOneShotToHysteresis(
                         context = context,
                         acc = acc,
@@ -238,7 +240,7 @@ object SmartChargeScheduler {
                         ),
                     )
                     app.settings.update { s }
-                    val nextTick = (now + SmartChargeEngine.TICK_MS).coerceAtMost(deadline)
+                    val nextTick = (now + tickMs(s)).coerceAtMost(deadline)
                     scheduleExact(context, ACTION_SMART_TICK, nextTick)
                 }
             }

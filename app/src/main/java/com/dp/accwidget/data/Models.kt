@@ -11,6 +11,8 @@ data class AccSettings(
     val smartDeadlineMinute: Int = 0,
     /** Minutes before deadline when smart window opens. */
     val smartLeadMinutes: Int = 60,
+    /** Minutes between smart current re-evaluations while in window. */
+    val smartTickMinutes: Int = 10,
     /** Epoch millis of next deadline (computed). */
     val smartDeadlineEpochMs: Long = 0L,
     val lastStatusText: String = "—",

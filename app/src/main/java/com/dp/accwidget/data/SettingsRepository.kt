@@ -26,6 +26,7 @@ class SettingsRepository(private val context: Context) {
         val SMART_HOUR = intPreferencesKey("smart_deadline_hour")
         val SMART_MIN = intPreferencesKey("smart_deadline_minute")
         val SMART_LEAD = intPreferencesKey("smart_lead_minutes")
+        val SMART_TICK = intPreferencesKey("smart_tick_minutes")
         val SMART_EPOCH = longPreferencesKey("smart_deadline_epoch")
         val STATUS = stringPreferencesKey("last_status")
         val LAST_MCC = intPreferencesKey("last_applied_mcc")
@@ -54,6 +55,7 @@ class SettingsRepository(private val context: Context) {
             prefs[Keys.SMART_HOUR] = next.smartDeadlineHour
             prefs[Keys.SMART_MIN] = next.smartDeadlineMinute
             prefs[Keys.SMART_LEAD] = next.smartLeadMinutes
+            prefs[Keys.SMART_TICK] = next.smartTickMinutes
             prefs[Keys.SMART_EPOCH] = next.smartDeadlineEpochMs
             prefs[Keys.STATUS] = next.lastStatusText
             prefs[Keys.LAST_MCC] = next.lastAppliedMcc
@@ -85,6 +87,7 @@ class SettingsRepository(private val context: Context) {
             smartDeadlineHour = this[Keys.SMART_HOUR] ?: 7,
             smartDeadlineMinute = this[Keys.SMART_MIN] ?: 0,
             smartLeadMinutes = this[Keys.SMART_LEAD] ?: 60,
+            smartTickMinutes = this[Keys.SMART_TICK] ?: 10,
             smartDeadlineEpochMs = this[Keys.SMART_EPOCH] ?: 0L,
             lastStatusText = this[Keys.STATUS] ?: "—",
             lastAppliedMcc = this[Keys.LAST_MCC] ?: 0,

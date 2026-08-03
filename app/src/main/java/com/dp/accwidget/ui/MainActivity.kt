@@ -63,6 +63,9 @@ class MainActivity : AppCompatActivity() {
                 if (!binding.inputSmartLead.isFocused) {
                     binding.inputSmartLead.setText(s.smartLeadMinutes.toString())
                 }
+                if (!binding.inputSmartTick.isFocused) {
+                    binding.inputSmartTick.setText(s.smartTickMinutes.toString())
+                }
                 binding.switchHideIcon.isChecked = s.hideLauncherIcon
                 updateRootBanner(s.rootGranted)
                 refreshProfileSummary()
@@ -91,6 +94,7 @@ class MainActivity : AppCompatActivity() {
             binding.inputSmartTarget,
             binding.inputSmartTime,
             binding.inputSmartLead,
+            binding.inputSmartTick,
         ).forEach { it.addTextChangedListener(watcher) }
 
         binding.switchControl.setOnCheckedChangeListener { _, _ ->
@@ -220,6 +224,9 @@ class MainActivity : AppCompatActivity() {
             val smart = binding.switchSmart.isChecked
             val target = binding.inputSmartTarget.text.toString().toIntOrNull()?.coerceIn(1, 100) ?: 80
             val lead = binding.inputSmartLead.text.toString().toIntOrNull()?.coerceIn(5, 24 * 60) ?: 60
+            val tick = binding.inputSmartTick.text.toString().toIntOrNull()
+                ?.coerceIn(SmartChargeEngine.MIN_TICK_MINUTES, SmartChargeEngine.MAX_TICK_MINUTES)
+                ?: SmartChargeEngine.DEFAULT_TICK_MINUTES
             val time = binding.inputSmartTime.text.toString().trim()
             val parts = time.split(":")
             val hour = parts.getOrNull(0)?.toIntOrNull()?.coerceIn(0, 23) ?: 7
@@ -258,6 +265,7 @@ class MainActivity : AppCompatActivity() {
                         smartDeadlineHour = hour,
                         smartDeadlineMinute = minute,
                         smartLeadMinutes = lead,
+                        smartTickMinutes = tick,
                         smartDeadlineEpochMs = if (smart && rootOk) deadline else 0L,
                         hideLauncherIcon = hideIcon,
                         lastStatusText = SmartChargeEngine.profileSummary(
