@@ -1,6 +1,6 @@
 # ACC Widget (`com.dp.accwidget`)
 
-Companion app + homescreen widgets for [ACC](https://github.com/VR-25/acc) on Redmi Note 12 Pro 4G (`sweet2`, LineageOS).
+Companion app + homescreen widgets for [ACC](https://github.com/VR-25/acc) on Redmi Note 12 Pro 4G (`sweet2`, LineageOS23.2 Android16).
 
 ## Features
 
@@ -20,21 +20,8 @@ Widgets do **not** poll every few seconds with exact alarms.
 - Inexact backup alarms: ~45 s while charging/plugged, ~4 min on battery
 - Battery reads use BatteryManager / sysfs (no `su` on the tick path)
 
-## Build (release 1.4.0)
-
-```bat
-set JAVA_HOME=D:\rn12pro4g\Acc-widget\.tools\jdk-17
-set ANDROID_HOME=D:\rn12pro4g\Acc-widget\.tools\android-sdk
-D:\rn12pro4g\Acc-widget\.tools\gradle-8.9\bin\gradle.bat assembleRelease
-```
 
 APK: `app\build\outputs\apk\release\app-release.apk`
-
-## Install
-
-```bat
-D:\rn12pro4g\microphone_and_dynamic\adb.exe install -r app\build\outputs\apk\release\app-release.apk
-```
 
 Grant root to **ACC Widget** in Magisk when prompted. Add **ACC Charge** widgets to the home screen.
 
